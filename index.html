@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StrawberryTabby BRB</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+      font-family: Arial, sans-serif;
+    }
+
+    #player {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    #brb {
+      position: absolute;
+      top: 35px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: white;
+      font-size: 42px;
+      font-weight: bold;
+      text-shadow: 0 2px 10px #000;
+      pointer-events: none;
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="brb">TABBY WILL BE RIGHT BACK ♡</div>
+
+  <iframe
+    id="player"
+    allowfullscreen
+    allow="autoplay; fullscreen">
+  </iframe>
+
+  <script>
+    const clips = [
+      // We'll add your Twitch clips automatically in the next step.
+    ];
+
+    let currentClip = 0;
+
+    function playClip() {
+      if (clips.length === 0) return;
+
+      const clip = clips[currentClip];
+
+      document.getElementById("player").src =
+        "https://clips.twitch.tv/embed?clip=" +
+        clip +
+        "&parent=" +
+        window.location.hostname +
+        "&autoplay=true";
+
+      currentClip++;
+
+      if (currentClip >= clips.length) {
+        currentClip = 0;
+      }
+    }
+
+    playClip();
+
+    // Temporary interval; we'll replace this with automatic
+    // clip-end handling.
+    setInterval(playClip, 60000);
+  </script>
+
+</body>
+</html>
